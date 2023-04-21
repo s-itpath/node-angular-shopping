@@ -87,8 +87,7 @@ app.use(bodyParser.json());
 //       console.log(error);
 //       res.status(500).send('An error occurred while deleting the product.');
 //     });
-//   });
-   
+//   });  
 
 // this is for drop all the current table means all the
 //saved data in table got deleted.
