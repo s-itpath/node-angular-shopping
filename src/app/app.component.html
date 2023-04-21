@@ -1,0 +1,52 @@
+<div id="app">
+  <nav class="navbar sticky-top navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Shop-Kart</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Home </a>
+      </li>
+      
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/admin" class="nav-link" routerLink="admin">Admin Access</a>
+      </li>
+      <li class="nav-item">
+        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/product" class="nav-link" *ngIf="isLoggedIn" routerLink="product">Add Product</a>
+      </li>
+      <li class="nav-item">
+        <a href="/showproduct" class="nav-link" *ngIf="isLoggedIn" routerLink="showproduct">All Products</a>
+      </li>
+      <li class="nav-item" *ngIf="showAdminBoard">
+        <a href="/showitem" class="nav-link" *ngIf="isLoggedIn" routerLink="showitem">User's Item</a>
+      </li>
+      <li class="nav-item" *ngIf="!showAdminBoard">
+        <a href="/userpro" class="nav-link" *ngIf="isLoggedIn" routerLink="userpro">{{username | titlecase}}'s Product</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a href="/login" class="nav-link"  routerLink="login">Login</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href="/profile" class="nav-link" routerLink="profile">{{ username | titlecase}}</a>
+      </li>
+      <li class="nav-item" (click)="logout()">
+        <a  class="nav-link" routerLink="home" >LogOut</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>
