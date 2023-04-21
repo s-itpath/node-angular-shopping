@@ -90,7 +90,6 @@ app.use(bodyParser.json());
 //   });
    
 
-
 // this is for drop all the current table means all the
 //saved data in table got deleted.
 
