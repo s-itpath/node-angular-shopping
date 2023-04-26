@@ -138,6 +138,19 @@
                   <input type="checkbox" name="checkbox"> Stay signed in for a week
                 </label>
               </div> -->
+
+
+
+              <div style="display: flex; justify-content: center;">
+                <re-captcha id="recaptcha" name="recaptcha" #recaptcha="ngModel" [(ngModel)]="token" 
+                required [class.is-invalid]="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)"></re-captcha>
+
+                <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="invalid-feedback">
+                  <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>
+                </div>
+              </div>
+
+              &nbsp;
               <div class="field padding-bottom--24">
                 <button class="btn btn-primary btn-block" style="color:white">Sign Up</button>
               </div>

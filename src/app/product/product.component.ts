@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-product',
@@ -19,10 +22,25 @@ export class ProductComponent implements OnInit{
     discount:null
   }
   isSuccessful=false
-  isSignUpFailed=false
+  isProductFailed=false
   errorMessage=''
+  dataSource=new MatTableDataSource<any>()
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!:MatSort
 
   constructor(private authService:AuthService, private router:Router){}
+
+  ngAfterViewInit(){
+    this.dataSource.paginator=this.paginator
+    this.dataSource.sort=this.sort
+  }
+
+  displayedColumns: string[]=['name','image','category','price','edit']
+  applyFilter(event:Event){
+    const filterValue=(event.target as HTMLInputElement).value;
+    this.dataSource.filter= filterValue.trim().toLowerCase()
+  }
 
   ngOnInit(): void {
     this.getProductList();
@@ -30,13 +48,15 @@ export class ProductComponent implements OnInit{
 
   getProductList(): void {
     this.authService.getProducts()
-      .subscribe(products => this.products = products);
+      // .subscribe(products => this.products = products);
+      .subscribe(element => this.dataSource.data = element)
   }
 
   deleteProduct(id:number){
     if(confirm('are you sure you want to delete this product?')){
       this.authService.deleteProduct(id).subscribe(()=>{
-        this.products= this.products.filter(product => product.id !== id)
+        // this.products= this.products.filter(product => product.id !== id)
+        this.dataSource.data=this.dataSource.data.filter(product => product.id!==id)
       },
       error =>{
         console.log(error)
@@ -78,12 +98,12 @@ export class ProductComponent implements OnInit{
       data =>{
         console.log(data)
         this.isSuccessful=true
-        this.isSignUpFailed=false
+        this.isProductFailed=false
         this.ngOnInit()
       },
       err =>{
         this.errorMessage=err.error.message
-        this.isSignUpFailed=true
+        this.isProductFailed=true
       }
     )
     // this.router.navigate(['product'])

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { ProductService } from '../_services/product.service';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-show-product',
@@ -12,9 +13,34 @@ export class ShowProductComponent implements OnInit{
   productList!:any[];
   products:any[]=[]
   subTotal!:any;
+  windowScrolled!:boolean
 
-  constructor(private productService:ProductService, private authService:AuthService, private router:Router){}
+  constructor(private productService:ProductService, private authService:AuthService, 
+    private router:Router, @Inject(DOCUMENT) private document:Document){}
+  @HostListener("window:scroll",[]) 
+  
+  
+  onWindowScroll() {
+    if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+      this.windowScrolled = true;
+    } 
+    else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) { 
+      this.windowScrolled = false;
+    }
+  } 
+  scrollToTop() {
+    (function smoothscroll() {
 
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+      
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 8));
+      }
+
+    })();
+  }
+  
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe({
       next:(res:any)=>{
@@ -31,11 +57,13 @@ export class ShowProductComponent implements OnInit{
 
     this.productService.loadCart()
     this.products=this.productService.getProduct()
+    console.log('hellodsd')
+    console.log(this.products)
   }
 
   addToCart(product:any){
     if(!this.productService.productInCart(product)){
-      product.quantity=1;
+      // product.quantity=1;
       this.productService.addToCart(product)
       this.products=[...this.productService.getProduct()]
       this.subTotal=product.price
@@ -70,9 +98,14 @@ export class ShowProductComponent implements OnInit{
       { quantity: 1, price: 0 }
     ).price;
   }
-
+  i:any
   checkout(){
     localStorage.setItem('cart_total',JSON.stringify(this.total))
     this.router.navigate(['/checkout'])
+    
+    for(this.i=0;this.i<this.products.length;this.i++){
+      console.log(this.products[this.i].quantity)
+    }
+    // console.log(this.products[0].quantity)
   }
 }

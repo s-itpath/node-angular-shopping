@@ -29,6 +29,15 @@ export class UsersItemComponent implements OnInit{
     this.dataSource.sort = this.sort;
   }
 
+  //to implement material ui sorting featuer name of displayedColumns
+  // and element.value should be same otherwise it won't work.
+  displayedColumns: string[]=['id','username','uid','name','price','createdAt','pImage']
+  // dataSource:any= this.getCartItem()
+  applyFilter(event: Event ) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
   ngOnInit(): void {
     // this.getCartItem()
     this.getCartItem2()
@@ -67,11 +76,16 @@ export class UsersItemComponent implements OnInit{
   // }
 
 
-  displayedColumns: string[]=['id','userName','userId','pName','pPrice','createdAt','pImage']
-  // dataSource:any= this.getCartItem()
-  applyFilter(event: Event ) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  
+
+  // i:any
+  // increseNo(){
+    
+  //   for(this.i=1;this.i<this.dataSource.data.length;this.i++){
+  //     console.log(this.i)
+  //     console.log('hii')
+  //   }
+  // }
+  
 
 }

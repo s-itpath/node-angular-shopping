@@ -16,8 +16,11 @@ export class RegisterComponent implements OnInit{
    isSuccessful=false
    isSignUpFailed=false
    errorMessage=''
+   token:string | undefined
 
-   constructor(private authService:AuthService, private router:Router){}
+   constructor(private authService:AuthService, private router:Router){
+      this.token=undefined
+   }
 
    ngOnInit(): void {
      

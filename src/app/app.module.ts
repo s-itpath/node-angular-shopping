@@ -26,6 +26,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from "@angular/material/icon";
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from "@angular/material/button";
+import { MatSortModule } from '@angular/material/sort';
+
 
 import { NgxPayPalModule } from 'ngx-paypal';
 // import { RecaptchaModule } from 'ng-recaptcha';
@@ -67,7 +69,8 @@ import { environment } from 'src/environments/environment';
     NgxPayPalModule,
     RecaptchaModule,
     ReactiveFormsModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    MatSortModule
   ],
   providers: [
     {

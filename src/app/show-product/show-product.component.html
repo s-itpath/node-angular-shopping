@@ -7,6 +7,20 @@
     </div>
   </nav>
   
+
+  <div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+    <button type="button" class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
+        <i class="fas fa-chevron-up" ></i>
+    </button>
+  </div>
+
+
+  <!-- <div class="to-top show-scrolltop" (click)="scrollToTop()">
+    <i class="fas fa-chevron-up" ></i>
+  </div> -->
+
+
+
   <div class="container pb-5 mt-n2 mt-md-n3">
     <div class="row">
       <div class="col-xl-8 col-m
@@ -48,14 +62,14 @@
               <img [src]="product?.image"  alt="Product" alt="" class="img-circle">
             </div>
           </div>
-          <h5>{{product?.name}} <span>${{product?.price | currency:"INR"}}</span></h5>
+          <h5>{{product?.name}} <span>{{product?.price | currency:"INR"}}</span></h5>
           <span class="text-muted">Product Description</span>
           <p>
             {{product?.description}}
           </p>
           <div>
-            <input [(ngModel)]="product.quantity" [ngModelOptions]="{standalone: true}" min="1" type="number" value="1"
-              name="" class="form-control w-25" />
+            <input [(ngModel)]="product.quantity"  min="1" type="number" 
+              name="" class="form-control w-25" value="product.quantity" />
             <br />
             <span>₹{{ product.quantity * product?.price | number : '1.2-2'}}</span>
           </div>

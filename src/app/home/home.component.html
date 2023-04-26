@@ -7,6 +7,29 @@
 
 
 
+  <div *ngIf="!show">
+  <ng-container *ngFor="let message of messages">
+    <div class="message" [ngClass]="{from: message.author === 'bot',to: message.author === 'user'}">
+      {{ message.content | titlecase}}
+    </div>
+  </ng-container>
+  <label  *ngIf="messages.length == 0; else dialogInfo" for="nameField">Chat Bot</label>
+  <input class="top-bar" [(ngModel)]="value" (keyup.enter)="sendMessage()" type="text" />
+  <button class="button button-active" (click)="sendMessage()">Send</button>
+  <ng-template #dialogInfo>
+    <span [className]="'float-right'">Total messages: {{ messages.length }}</span>
+  </ng-template>
+</div>
+
+
+
+  <div (click)="show=!show">
+    <button class="btn1">ChatBot</button>
+  </div>
+
+
+
+
 
   
   
