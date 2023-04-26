@@ -19,7 +19,7 @@ app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-
+// app.use(express.static('angular-login'));
 
 const db=require('./models');
 const Role=db.role;
@@ -111,7 +111,8 @@ require('./routes/user.routes')(app)
 
 const PORT=8080;
 app.listen(PORT,()=>{
-    console.log('server is running on port 8080')
+    console.log(`server is running on port ${PORT},
+    http://localhost:8080/`)
 })
 
 
