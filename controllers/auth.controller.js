@@ -1,4 +1,5 @@
 const db = require("../models")
+const Sequelize = require('sequelize');
 const config = require("../config/auth.config")
 const User = db.user
 const Role = db.role
@@ -103,6 +104,24 @@ exports.findUserProduct=(req,res)=>{
     // res.send('working')
 }
 
+exports.findProductCategory=(req,res)=>{
+    Product.findAll({
+        // attributes:['category'],
+        // distinct:true
+
+        attributes:[
+            [Sequelize.fn('DISTINCT', 
+            Sequelize.col('category')),
+            'category'],
+        ]
+       
+    })
+    .then((item)=>{
+        res.json(item)
+    })
+    
+}
+
 exports.updateProduct= (req,res)=>{
     const id=req.params.id;
     const data= req.body;
@@ -143,6 +162,12 @@ exports.showProduct = (req, res) => {
 
     Product.findAll().then(function (products) {
         res.json(products)
+    })
+}
+
+exports.showAllUsers=(req,res)=>{
+    User.findAll().then(function (user){
+        res.json(user)
     })
 }
 

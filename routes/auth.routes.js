@@ -38,6 +38,8 @@ module.exports= function(app){
 
     app.get('/api/auth/userpro/:id', controller.findUserProduct)
 
+    app.get('/api/auth/procategory',controller.findProductCategory)
+
     // app.get('/api/auth/product', function(req, res) {
     //     Product.findAll().then(function(products) {
     //       res.json(products);
@@ -49,4 +51,5 @@ module.exports= function(app){
     app.put('/api/auth/editproduct/:id', controller.updateProduct)
 
     app.get('/api/auth/product', controller.showProduct)
+    app.get('/api/auth/alluser', controller.showAllUsers)
 }
