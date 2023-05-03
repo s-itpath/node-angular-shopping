@@ -1,3 +1,7 @@
+.container{
+  text-align: center;
+}
+
 .button {
     margin-right: 20px;
   }
@@ -26,7 +30,9 @@
     border-radius:10px; 
     padding:15px;
     min-height:30px; 
-    min-width: 120px;
+    min-width: 60px;
+    display: flex;
+    justify-content: center;
 }
 .message {
     /* border-radius: 50px; */
@@ -51,3 +57,47 @@
   .message.from + .message.from {
     margin-top: -10px;
 }
+
+
+.chatbot{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+.zoom{
+  background-color: none;
+  transition: transform .2s;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.zoom:hover{
+  transform: scale(1.2);
+}
+
+
+/* for scroll to top */
+.scroll-to-top {
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  opacity: 0;
+  transition: all .2s ease-in-out;
+  background-color: #64646466;
+ }
+ .scroll-to-top:hover{
+  background-color: #3a3a3a66 ;
+ }
+ .show-scrollTop {
+  opacity: 1;
+  transition: all .2s ease-in-out;
+ }
+
+/* .chat-container{
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+} */

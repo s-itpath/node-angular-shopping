@@ -8,12 +8,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { ProductComponent } from './product/product.component';
 import { ShowProductComponent } from './show-product/show-product.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { UsersItemComponent } from './users-item/users-item.component';
 import { UserProductComponent } from './user-product/user-product.component';
+import { AllUserComponent } from './all-user/all-user.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent},
@@ -21,8 +21,8 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'profile',component:ProfileComponent, canActivate:[AuthguardGuard]},
   {path:'user',component:BoardUserComponent, canActivate:[AuthguardGuard]},
-  {path:'admin',component:BoardAdminComponent, canActivate:[AuthguardGuard]},
   {path:'product',component:ProductComponent, canActivate:[AdminguardGuard]},
+  {path:'alluser', component:AllUserComponent, canActivate:[AdminguardGuard]},
   {path:'showproduct',component:ShowProductComponent, canActivate:[AuthguardGuard]},
   {path:'checkout', component:CheckoutComponent, canActivate:[AuthguardGuard]},
   {path:'showitem', component:UsersItemComponent, canActivate:[AuthguardGuard]},

@@ -9,4 +9,7 @@ export class Product {
     discount!: number;
     quantity!: number;
   }
+
+
+
   

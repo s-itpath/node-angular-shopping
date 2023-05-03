@@ -15,35 +15,35 @@ import { environment } from 'src/environments/environment';
 })
 
 
-export class CheckoutComponent implements OnInit{
+export class CheckoutComponent implements OnInit {
 
-   payPalConfig?: IPayPalConfig;
+  payPalConfig?: IPayPalConfig;
 
-  showSuccess!:any
-  cartTotal!:any
-  cartItem:any
-  cartData:any
-  userDetail:any
+  showSuccess!: any
+  cartTotal!: any
+  cartItem: any
+  cartData: any
+  userDetail: any
 
-  name:any
-  price:any
-  image:any
+  name: any
+  price: any
+  image: any
 
-  constructor(private router:Router, private authService:AuthService){}
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.initConfig()
-    this.cartTotal= JSON.parse(localStorage.getItem('cart_total')as any)|| []
-    console.log(this.cartTotal)
+    this.cartTotal = JSON.parse(localStorage.getItem('cart_total') as any) || []
+    // console.log(this.cartTotal)
     this.cartTotal.toFixed(2)
 
-    this.cartItem=JSON.parse(localStorage.getItem('cart_items')as any)|| []
+    this.cartItem = JSON.parse(localStorage.getItem('cart_items') as any) || []
     // const keys=Object.keys(this.cartItem)
     //  JSON.stringify(this.cartItem)
     console.log(this.cartItem)
 
-    this.userDetail=JSON.parse(sessionStorage.getItem('auth-user')as any)|| []
-    
+    this.userDetail = JSON.parse(sessionStorage.getItem('auth-user') as any) || []
+
     // console.log(this.userDetail.username)
     // for(let i=0;i<this.userDetail.length;i++){
     //   // console.log(this.cartItem[i].name)
@@ -51,41 +51,41 @@ export class CheckoutComponent implements OnInit{
     //   // console.log(this.cartData.name)
     //   console.log(this.cartItem[i].name)
     // }
-  
+
     // console.log(this.cartItem[0].name)
     // console.log(this.cartItem.length)
   }
   // userName:any= this.userDetail
-  
-  addToCartProduct():void {
-    console.log(this.userDetail.username)
-    for(let i=0;i< this.cartItem.length;i++){
-      console.log(this.cartItem[i].name)
-    
-    this.authService.addToCart(this.cartItem[i].name,this.cartItem[i].price,this.cartItem[i].image,this.userDetail.username,this.userDetail.id).subscribe(
-      data =>{
-        // alert('product added successfully')
 
-        // console.log(this.cartItem.name)
-        // console.log(this.cartItem[0].name)
-        // JSON.stringify(this.cartItem)
-        // this.cartItem=data
-      },
-      err =>{
-        console.log(err)
-      }
-    )
+  addToCartProduct(): void {
+    console.log(this.userDetail.username)
+    for (let i = 0; i < this.cartItem.length; i++) {
+      console.log(this.cartItem[i].name)
+
+      this.authService.addToCart(this.cartItem[i].name, this.cartItem[i].price, this.cartItem[i].image, this.userDetail.username, this.userDetail.id).subscribe(
+        data => {
+          // alert('product added successfully')
+
+          // console.log(this.cartItem.name)
+          // console.log(this.cartItem[0].name)
+          // JSON.stringify(this.cartItem)
+          // this.cartItem=data
+        },
+        err => {
+          console.log(err)
+        }
+      )
     }
     alert('product added successfully')
     localStorage.removeItem('cart_items');
   }
 
 
-  backToProduct(){
+  backToProduct() {
     this.router.navigate(['/showproduct'])
   }
   // private initConfig():void {
-    
+
   // }
 
 

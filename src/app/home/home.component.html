@@ -1,19 +1,44 @@
 <div class="container">
-    <header class="jumbotron">
-      <p>{{ content }}</p>
-    </header>
+  <header class="jumbotron">
+    <!-- <p>{{ content }}</p> -->
+    <h2 style="color: black;">Our Best Selling Products</h2>
+  </header>
+</div>
+
+<!-- <app-dark-mode-toggle></app-dark-mode-toggle> -->
+
+<div class="col-md-12" >
+  <div class="row" style="color: black;">
+    <div class="col-md-4 col-sm-6" *ngFor="let product of productList" (click)=goToPage() style="cursor: pointer;">
+      <div class="card my-2">
+        <div style="display: flex; justify-content: center;">
+        <img src="{{product.image}}" alt="{{product.name}}" class="zoom" style="height: 200px; width: 200px;" >
+        </div>
+        <div class="card-header" style="text-align: center;">
+          <p>{{product.name}}</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+
+<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
+  <button type="button" matTooltip="Back To Top"  class="btn active" data-toggle="button" aria-pressed="true" (click)="scrollToTop()">
+      <i class="fas fa-chevron-up" ></i>
+  </button>
+</div>
 
 
 
 
-  <div *ngIf="!show">
+<div *ngIf="!show" class="chat-container">
   <ng-container *ngFor="let message of messages">
     <div class="message" [ngClass]="{from: message.author === 'bot',to: message.author === 'user'}">
       {{ message.content | titlecase}}
     </div>
   </ng-container>
-  <label  *ngIf="messages.length == 0; else dialogInfo" for="nameField">Chat Bot</label>
+  <label *ngIf="messages.length == 0; else dialogInfo" for="nameField">Enter Message: </label>
   <input class="top-bar" [(ngModel)]="value" (keyup.enter)="sendMessage()" type="text" />
   <button class="button button-active" (click)="sendMessage()">Send</button>
   <ng-template #dialogInfo>
@@ -23,15 +48,6 @@
 
 
 
-  <div (click)="show=!show">
-    <button class="btn1">ChatBot</button>
-  </div>
-
-
-
-
-
-  
-  
-
-  
+<div (click)="show=!show" class="chatbot" *ngIf="isLoggedIn">
+  <button class="btn1" matTooltip="Chat Bot"> <mat-icon> chat</mat-icon></button>
+</div>

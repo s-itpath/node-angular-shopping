@@ -181,7 +181,7 @@
         <input type="text" [(ngModel)]="element.price">
       </div>
       <div *ngIf="!element.isEdit">
-        {{ element.price }}
+        {{ element.price | currency:"INR"}}
       </div>
     </td>
   </ng-container>

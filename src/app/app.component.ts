@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { ThemeService } from './theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,16 @@ export class AppComponent implements OnInit {
     showAdminBoard=false
     // showModeratorBoard=false
     username?:string
+    checkbox=document.querySelector('#checkbox')
 
-    constructor(private tokenStorageService:TokenStorageService){}
-
+    constructor(private tokenStorageService:TokenStorageService,
+      private themeService:ThemeService){}
+    
     ngOnInit(): void {
       this.isLoggedIn=!!this.tokenStorageService.getToken()
-
+      this.checkbox?.addEventListener("change",()=>{
+        document.body.classList.toggle("dark")
+      })
       if(this.isLoggedIn){
         const user=this.tokenStorageService.getUser()
         this.roles=user.roles;
@@ -30,6 +35,15 @@ export class AppComponent implements OnInit {
       }
     }
 
+
+    toggle() {
+      const active = this.themeService.getActiveTheme() ;
+      if (active.name === 'light') {
+        this.themeService.setTheme('dark');
+      } else {
+        this.themeService.setTheme('light');
+      }
+    }
 
     logout():void{
       this.tokenStorageService.signOut()

@@ -1,52 +1,157 @@
-<div id="app">
-  <nav class="navbar sticky-top navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">Shop-Kart</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
-      </li>
-      
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Access</a>
-      </li>
-      <li class="nav-item">
-        <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/product" class="nav-link" *ngIf="isLoggedIn" routerLink="product">Add Product</a>
-      </li>
-      <li class="nav-item">
-        <a href="/showproduct" class="nav-link" *ngIf="isLoggedIn" routerLink="showproduct">All Products</a>
-      </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/showitem" class="nav-link" *ngIf="isLoggedIn" routerLink="showitem">User's Item</a>
-      </li>
-      <li class="nav-item" *ngIf="!showAdminBoard">
-        <a href="/userpro" class="nav-link" *ngIf="isLoggedIn" routerLink="userpro">{{username | titlecase}}'s Product</a>
-      </li>
-    </ul>
+<div id="app" app-theme>
 
-    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-      <li class="nav-item">
-        <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a href="/login" class="nav-link"  routerLink="login">Login</a>
-      </li>
-    </ul>
 
-    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <li class="nav-item">
-        <a href="/profile" class="nav-link" routerLink="profile">{{ username | titlecase}}</a>
-      </li>
-      <li class="nav-item" (click)="logout()">
-        <a  class="nav-link" routerLink="home" >LogOut</a>
-      </li>
-    </ul>
-  </nav>
+  <!-- <div class="navcol">
+    <nav class="navbar sticky-top navbar-expand" style="padding: 20px;">
+      <a href="#" class="navbar-brand change-font-color" style="display: flex; align-items: center;">Shop-Kart <i
+          class="material-icons">shopping_cart</i></a>
+      <ul class="navbar-nav mr-auto" routerLinkActive="active" style="align-items: center;">
+        <li class="nav-item">
+          <a href="/home" class="nav-link change-font-color" routerLink="home">Home </a>
+        </li>
 
-  <div class="container">
-    <router-outlet></router-outlet>
+        <li class="nav-item">
+          <a href="/user" class="nav-link change-font-color" *ngIf="isLoggedIn" routerLink="user">User</a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/product" class="nav-link change-font-color" *ngIf="isLoggedIn" routerLink="product">Add Product</a>
+        </li>
+        <li class="nav-item">
+          <a href="/showproduct" class="nav-link change-font-color" *ngIf="isLoggedIn" routerLink="showproduct">All
+            Products</a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/showitem" class="nav-link change-font-color" *ngIf="isLoggedIn" routerLink="showitem">User's
+            Item</a>
+        </li>
+        <li class="nav-item" *ngIf="showAdminBoard">
+          <a href="/alluser" class="nav-link change-font-color" *ngIf="isLoggedIn" routerLink="alluser">All Users</a>
+        </li>
+        <li class="nav-item" *ngIf="!showAdminBoard">
+          <a href="/userpro" class="nav-link change-font-color" *ngIf="isLoggedIn" routerLink="userpro">{{username |
+            titlecase}}'s
+            Product</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn" style="margin-left: 50px;">
+          <div class="dark-mode">
+            <span>Light</span>
+            <label class="switch">
+              <input type="checkbox" (click)="toggle()">
+              <span class="slider round"></span>
+            </label>
+            <span>Dark</span>
+          </div>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/register" class="nav-link change-font-color" routerLink="register">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a href="/login" class="nav-link change-font-color" routerLink="login">Login</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+        <li class="nav-item">
+          <a href="/profile" class="nav-link change-font-color" routerLink="profile">{{ username | titlecase}}</a>
+        </li>
+        <li class="nav-item" (click)="logout()">
+          <a class="nav-link change-font-color" routerLink="home">LogOut</a>
+        </li>
+      </ul>
+    </nav>
+  </div> -->
+
+
+  <div style="height: 80vh;">
+    <mat-toolbar color="primary" style="display: flex; justify-content: space-between;">
+      <mat-toolbar-row style="display: flex; justify-content: space-between;">
+        <div style="display: flex;">
+          <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span style="display: flex; align-items: center;">Shop-Kart <i class="material-icons">shopping_cart</i></span>&nbsp;&nbsp;&nbsp;
+            <div class="dark-mode">
+              <span>Light</span>
+              <label class="switch">
+                <input type="checkbox" (click)="toggle()">
+                <span class="slider round"></span>
+              </label>
+              <span>Dark</span>
+            </div> &nbsp;&nbsp;&nbsp;
+          <span class="menu-spacer"></span>
+          <div fxShow="true" fxHide.lt-md>
+
+            <a href="/home" mat-button class=" change-font-color" routerLink="home">Home </a>
+            <a href="/user" *ngIf="isLoggedIn" mat-button class="change-font-color" routerLink="user">User</a>
+            <a href="/product" *ngIf="showAdminBoard && isLoggedIn" mat-button class="change-font-color"
+              routerLink="product">Add Product</a>
+            <a href="/showproduct" mat-button class="change-font-color" *ngIf="isLoggedIn" routerLink="showproduct">All
+              Products</a>
+            <a href="/showitem" mat-button class="change-font-color" *ngIf="isLoggedIn && showAdminBoard"
+              routerLink="showitem">User's
+              Item</a>
+            <a href="/alluser" mat-button class="change-font-color" *ngIf="isLoggedIn && showAdminBoard"
+              routerLink="alluser">All Users</a>
+            <a href="/userpro" mat-button class="change-font-color" *ngIf="isLoggedIn"
+              routerLink="userpro">{{username |
+              titlecase}}'s
+              Product</a>
+          </div>
+        </div>
+        <div fxShow="true" fxHide.lt-md style="display: flex;">
+          <a href="/register" *ngIf="!isLoggedIn" mat-button class=" change-font-color" routerLink="register">Sign
+            Up</a>
+          <a href="/login" *ngIf="!isLoggedIn" mat-button class="change-font-color" routerLink="login">Login</a>
+
+          <a href="/profile" *ngIf="isLoggedIn" mat-button class="change-font-color" routerLink="profile">{{ username |
+            titlecase}}</a>
+          <a class="change-font-color" *ngIf="isLoggedIn" (click)="logout()" mat-button routerLink="home">LogOut</a>
+        </div>
+
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-sidenav-container fxFlexFill>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <a (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+          <a href="/home" mat-list-item class=" change-font-color" routerLink="home">Home </a>
+          <a href="/user" *ngIf="isLoggedIn" mat-list-item class="change-font-color" routerLink="user">User</a>
+          <a href="/product" *ngIf="showAdminBoard isLoggedIn" mat-list-item class="change-font-color"
+            routerLink="product">Add Product</a>
+          <a href="/showproduct" mat-list-item class="change-font-color" *ngIf="isLoggedIn" routerLink="showproduct">All
+            Products</a>
+          <a href="/showitem" mat-list-item class="change-font-color" *ngIf="isLoggedIn showAdminBoard"
+            routerLink="showitem">User's
+            Item</a>
+          <a href="/alluser" mat-list-item class="change-font-color" *ngIf="isLoggedIn showAdminBoard"
+            routerLink="alluser">All Users</a>
+          <a href="/userpro" mat-list-item class="change-font-color" *ngIf="isLoggedIn showAdminBoard"
+            routerLink="userpro">{{username |
+            titlecase}}'s
+            Product</a>
+          <a href="/register" *ngIf="!isLoggedIn" mat-list-item class=" change-font-color" routerLink="register">Sign
+            Up</a>
+          <a href="/login" *ngIf="!isLoggedIn" mat-list-item class="change-font-color" routerLink="login">Login</a>
+
+          <a href="/profile" *ngIf="isLoggedIn" mat-list-item class="change-font-color" routerLink="profile">{{ username |
+            titlecase}}</a>
+          <a class="change-font-color" *ngIf="isLoggedIn" (click)="logout()" mat-list-item routerLink="home">LogOut</a>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-content fxFlexFill>
+        <div class="bgcolor">
+          <div class="container">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
+
+
 
 </div>

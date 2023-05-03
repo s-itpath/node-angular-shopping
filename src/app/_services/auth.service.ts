@@ -83,6 +83,10 @@ export class AuthService {
     return this.http.get<any[]>(AUTH_API + 'product');
   }
 
+  showaAllUser(){
+    return this.http.get<any[]>(AUTH_API + 'alluser');
+  }
+
   getUserSelectedProducts(id:any){
     return this.http.get<any[]>(AUTH_API +'userpro/'+ id)
   }

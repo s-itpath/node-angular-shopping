@@ -57,14 +57,17 @@ export class ShowProductComponent implements OnInit{
 
     this.productService.loadCart()
     this.products=this.productService.getProduct()
-    console.log('hellodsd')
+    console.log('hello')
     console.log(this.products)
   }
-
+  // showProduct(id:any){
+  //   console.log(id)
+  //   this.router.navigate(['user'])
+  // }
   addToCart(product:any){
     if(!this.productService.productInCart(product)){
-      // product.quantity=1;
-      this.productService.addToCart(product)
+      product.quantity=1;
+      this.productService.addToCart(product)  
       this.products=[...this.productService.getProduct()]
       this.subTotal=product.price
     }
