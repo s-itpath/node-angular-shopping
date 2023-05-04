@@ -52,4 +52,6 @@ module.exports= function(app){
 
     app.get('/api/auth/product', controller.showProduct)
     app.get('/api/auth/alluser', controller.showAllUsers)
+    app.delete('/api/auth/deleteuser/:id',controller.deleteUserByAdmin)
+    app.put('/api/auth/edituser/:id', controller.updateUser)
 }

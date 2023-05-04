@@ -9,7 +9,8 @@ const Cart= db.cart
 const Op = db.Sequelize.Op;
 
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { USER } = require("../config/db.config");
 
 
 
@@ -86,6 +87,22 @@ exports.deleteUserProduct=(req,res)=>{
     })
 }
 
+exports.deleteUserByAdmin=(req,res)=>{
+    const userId=req.params.id;
+
+    User.destroy({
+        where:{
+            id:userId
+        }
+    })
+    .then(()=>{
+        res.status(200).send('selected user deleted successfully')
+    })
+    .catch((err)=>{
+        res.status(500).send('error in deleting selected user')
+    })
+}
+
 exports.findUserProduct=(req,res)=>{
     const id=req.params.id;
     Cart.findAll({
@@ -133,6 +150,22 @@ exports.updateProduct= (req,res)=>{
             }
         });
         res.send('product updated')
+    } catch (err){
+        res.send(err)
+    }
+}
+
+exports.updateUser=(req,res)=>{
+    const id=req.params.id;
+    const data=req.body;
+
+    try{
+        const user=User.update(data,{
+            where:{
+                id
+            }
+        })
+        res.send('user updated')
     } catch (err){
         res.send(err)
     }
