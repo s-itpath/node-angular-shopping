@@ -34,7 +34,6 @@ export class UserProductComponent implements OnInit{
     console.log(this.newId)
   }
 
-
   // deleteProduct(id:number){
   //   if(confirm('are you sure you want to delete this product?')){
   //     this.authService.deleteProduct(id).subscribe(()=>{

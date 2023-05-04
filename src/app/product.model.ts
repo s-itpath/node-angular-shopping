@@ -1,4 +1,7 @@
 export class Product {
+    find(arg0: (p: any) => boolean): Promise<any> {
+      throw new Error('Method not implemented.');
+    }
     id!: number;
     name!: string;
     description!: string;

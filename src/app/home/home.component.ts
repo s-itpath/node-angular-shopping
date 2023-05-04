@@ -24,29 +24,29 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, private chatBot:ChatbotService,
     private tokenStorageService:TokenStorageService, private productService:ProductService,
     private router:Router) { }
-    @HostListener("window:scroll",[])
+    // @HostListener("window:scroll",[])
 
-    onWindowScroll(){
-      if(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop >100){
-        this.windowScrolled=true;
-      }
-      else if(this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop <10){
-        this.windowScrolled=false;
-      }
-    }
+    // onWindowScroll(){
+    //   if(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop >100){
+    //     this.windowScrolled=true;
+    //   }
+    //   else if(this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop <10){
+    //     this.windowScrolled=false;
+    //   }
+    // }
 
-    scrollToTop() {
-      (function smoothscroll() {
+    // scrollToTop() {
+    //   (function smoothscroll() {
   
-        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
+    //     var currentScroll = document.documentElement.scrollTop || document.body.scrollTop; 
         
-        if (currentScroll > 0) {
-          window.requestAnimationFrame(smoothscroll);
-          window.scrollTo(0, currentScroll - (currentScroll / 8));
-        }
+    //     if (currentScroll > 0) {
+    //       window.requestAnimationFrame(smoothscroll);
+    //       window.scrollTo(0, currentScroll - (currentScroll / 8));
+    //     }
   
-      })();
-    }
+    //   })();
+    // }
 
   ngOnInit(): void | string {
     this.isLoggedIn=!!this.tokenStorageService.getToken()

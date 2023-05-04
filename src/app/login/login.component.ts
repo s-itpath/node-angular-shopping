@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit{
      recaptcha:any;
      captchaVal=false
      token:string | undefined
+     authError:string=''
 
      protected formGroup!:FormGroup 
 
@@ -70,13 +71,16 @@ export class LoginComponent implements OnInit{
           this.isLoginFailed=true
         }
       )
+      this.router.navigate(['home']) ;
+      if(this.isLoginFailed==true){
+        this.authError="Email or Password is not correct."
+      }
       // if(this.captchaVal=false){
       //   console.log('captcha error')
       // }
       // else{
       //   console.log('captcha success')
       // }
-      this.router.navigate(['home']) ;
      }
 
      

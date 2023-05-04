@@ -163,6 +163,8 @@
                 <div class="field padding-bottom--24">
                   <button class="btn btn-primary btn-block" style="color:white">Log In </button>
                 </div>
+                <p *ngIf="isLoginFailed" style="color: red; text-align: center;">Email or Password is not correct.</p>
+                <!-- <p>{{authError}}</p> -->
                 <div class="field padding-bottom--24">
                   <a class="ssolink" href="#">Use single sign-in (Google) instead</a>
                 </div>

@@ -24,7 +24,7 @@ export class AllUserComponent implements OnInit{
     this.dataSource.sort=this.sort
   }
 
-  displayedColumns: string[]=['id','username','email']
+  displayedColumns: string[]=['id','username','email','createdAt','edit']
   applyFilter(event:Event){
     const filterValue=(event.target as HTMLInputElement).value;
     this.dataSource.filter=filterValue.trim().toLowerCase()
@@ -38,5 +38,31 @@ export class AllUserComponent implements OnInit{
     this.authService.showaAllUser()
     .subscribe(res=> this.dataSource.data= res)
     console.log(this.dataSource.data)
+  }
+
+  deleteUser(id:number){
+    if(confirm('are you sure you want to delete this user?')){
+      this.authService.deleteUserByAdmin(id).subscribe(()=>{
+        this.dataSource.data= this.dataSource.data.filter(user => user.id!==id)
+      },
+      error =>{
+        console.log(error)
+      })
+    }
+    this.authService.reloadCurrentRoute()
+  }
+
+  updateUser(user:any){
+    this.authService.updateUser(user.id,user).subscribe((res)=>{
+
+    },
+    (err)=>{
+      console.log(err)
+    });
+    user.isEdit=false;
+  }
+
+  status(item:any){
+    item.isEdit=true;
   }
 }

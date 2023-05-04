@@ -56,24 +56,6 @@ img {
 
 
 
-/* for scroll to top */
-.scroll-to-top {
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  opacity: 0;
-  transition: all .2s ease-in-out;
-  background-color: #f09e9e66;
- }
- .scroll-to-top:hover{
-  background-color: #c25a5a66 ;
- }
- .show-scrollTop {
-  opacity: 1;
-  transition: all .2s ease-in-out;
- }
 
  /* .to-top {
   bottom: 0;

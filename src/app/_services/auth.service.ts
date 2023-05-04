@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Product } from '../product.model';
 
 const AUTH_API= 'http://localhost:8080/api/auth/'
 
@@ -70,18 +71,30 @@ export class AuthService {
     return this.http.delete<void>(`${AUTH_API + 'deluserproduct'}/${id}`)
   }
   
+  deleteUserByAdmin(id:number):Observable<void>{
+    return this.http.delete<void>(`${AUTH_API + 'deleteuser'}/${id}`)
+  }
 
   updateProduct(id:number, data:string):Observable<any>{
     return this.http.put(AUTH_API + 'editproduct/'+ id,data)
   }
 
-  // getAllProduct():Observable<any>{
-  //   return this.http.get(AUTH_API + 'product',{responseType:'text'})
-  // }
+  updateUser(id:number, data:string):Observable<any>{
+    return this.http.put(AUTH_API+ 'edituser/'+id,data)
+  }
+
+  getAllProduct():Observable<any>{
+    return this.http.get(AUTH_API + 'product',{responseType:'text'})
+  }
 
   getProducts() {
     return this.http.get<any[]>(AUTH_API + 'product');
   }
+
+  // getProductById(id:any):Observable<any>{
+  //   let product:Product=this.getProducts()
+  //   return product.find((p:any)=>p.id==id)
+  // }
 
   showaAllUser(){
     return this.http.get<any[]>(AUTH_API + 'alluser');
