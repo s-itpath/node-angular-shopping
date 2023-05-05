@@ -1,5 +1,34 @@
+<h2>
+  Hello <strong>{{ currentUser.username | uppercase }}!</strong>
+</h2>
 
-<h2>Hello <strong>{{currentUser.username | uppercase}}!</strong></h2>
+<!-- <div class="container">
+  <header class="jumbotron">
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+        <img src="{{ productData[0].image }}" alt="{{productData[0].name}}" height="400px" width="400px" />
+      </div>
+      <div>
+        <p>Product Id: {{ productData[0].id }}</p>
+        <p>Product Name: {{ productData[0].name }}</p>
+        <p>Product Price: {{ productData[0].price | currency:"INR"}}</p>
+      </div>
+    </div>
+  </header>
+</div> -->
 
 
-<p>product: {{product.id}}</p>
+<mat-card class="example-card" style="margin-bottom: 20px;">
+    <mat-card-header>
+      <mat-card-title-group style="padding: 20px 20px;">
+        <img mat-card-xl-image src="{{productData[0].image}}" >
+        <mat-card-title style="color: black;"> {{productData[0].name}}</mat-card-title>
+        <mat-card-subtitle>Category: {{productData[0].category}}</mat-card-subtitle>
+        <mat-card-title style="color: black;"> {{productData[0].price | currency:"INR"}}</mat-card-title>
+    </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content style="text-align: center;">
+        <button mat-raised-button button routerLink="/showproduct" color="primary">Buy Now</button>
+      <!-- {{longText}} -->
+    </mat-card-content>
+  </mat-card>

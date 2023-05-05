@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-product',
@@ -25,6 +26,8 @@ export class ProductComponent implements OnInit{
   isProductFailed=false
   errorMessage=''
   dataSource=new MatTableDataSource<any>()
+  icon=faTrash
+  editIcon=faEdit
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!:MatSort

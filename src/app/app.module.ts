@@ -30,6 +30,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import {  MatSidenavModule  } from "@angular/material/sidenav";
+import {  MatCardModule  } from "@angular/material/card";
 import {  MatListModule } from "@angular/material/list";
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -44,6 +45,7 @@ import { lightTheme } from './theme/light-theme';
 import { darkTheme } from './theme/dark-theme';
 
 import { environment } from 'src/environments/environment';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -82,6 +84,7 @@ import { environment } from 'src/environments/environment';
     RecaptchaFormsModule,
     MatSortModule,
     MatTooltipModule,
+    MatCardModule,
     ThemeModule.forRoot({
       themes:[lightTheme,darkTheme],
       active:'light'
@@ -89,7 +92,8 @@ import { environment } from 'src/environments/environment';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FontAwesomeModule
     // IonicModule.forRoot(AppComponent)
   ],
   providers: [
