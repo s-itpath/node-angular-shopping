@@ -121,6 +121,22 @@ exports.findUserProduct=(req,res)=>{
     // res.send('working')
 }
 
+exports.findProductById=(req,res)=>{
+    const id=req.params.id;
+    Product.findAll({
+        where:{
+           id:id 
+        }
+    })
+    .then((item)=>{
+        res.json(item)
+    })
+    .catch((err)=>{
+        console.log('error in find product by id')
+        res.status(500).send('error in finding product by id')
+    })
+}
+
 exports.findProductCategory=(req,res)=>{
     Product.findAll({
         // attributes:['category'],

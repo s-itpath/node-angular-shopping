@@ -38,6 +38,8 @@ module.exports= function(app){
 
     app.get('/api/auth/userpro/:id', controller.findUserProduct)
 
+    app.get('/api/auth/productbyid/:id',controller.findProductById)
+
     app.get('/api/auth/procategory',controller.findProductCategory)
 
     // app.get('/api/auth/product', function(req, res) {
